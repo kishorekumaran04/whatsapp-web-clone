@@ -1,4 +1,4 @@
-package com.kishore.whatsapp_web_clone;
+package com.kishore.whatsapp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
