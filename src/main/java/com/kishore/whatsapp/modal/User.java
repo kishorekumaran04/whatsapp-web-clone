@@ -1,5 +1,7 @@
 package com.kishore.whatsapp.modal;
 
+import java.util.Objects;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -22,12 +24,32 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	
-	private String full_name;
+	private String fullName;
 	private String email;
-	private String profile_picture;
+	private String profilePicture;
 	private String password;
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(email, fullName, id, password, profilePicture);
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		User other = (User) obj;
+		return Objects.equals(email, other.email) && Objects.equals(fullName, other.fullName)
+				&& Objects.equals(id, other.id) && Objects.equals(password, other.password)
+				&& Objects.equals(profilePicture, other.profilePicture);
+	}
 	
 //	@OneToMany(mappedBy = "user", cascade= CascadeType.ALL)
 //	private List<Notification> notifications = new ArrayList<>();
+	
+	
 
 }

@@ -1,4 +1,4 @@
-package com.kishore.whatsapp;
+package com.kishore.whatsapp.service;
 
 import java.util.List;
 
@@ -8,9 +8,9 @@ import com.kishore.whatsapp.request.UpdateUserRequest;
 
 public interface UserService {
 	
-	public User findUserById(Integer id);
+	public User findUserById(Integer id) throws UserException;
 	
-	public User findUserProfile(String jwt);
+	public User findUserProfile(String jwt) throws UserException;
 	
 	public User updateUser(Integer userId, UpdateUserRequest req) throws UserException;
 	
