@@ -34,8 +34,10 @@ public class AppConfig {
 				// TODO Auto-generated method stub
 				CorsConfiguration cfg = new CorsConfiguration();
 				cfg.setAllowedOrigins(Arrays.asList(
-						"http://localhost:3000/"
+						"http://localhost:3000/",
+						"http://localhost:5173/"
 						));
+//				cfg.setAllowedOriginPatterns(Collections.singletonList("*"));
 				cfg.setAllowedMethods(Collections.singletonList("*"));
 				cfg.setAllowCredentials(true);
 				cfg.setAllowedHeaders(Collections.singletonList("*"));

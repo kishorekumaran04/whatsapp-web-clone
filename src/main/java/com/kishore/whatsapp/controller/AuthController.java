@@ -1,6 +1,7 @@
 package com.kishore.whatsapp.controller;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -30,9 +31,10 @@ public class AuthController {
 	private TokenProvider tokenProvider;
 	private CustomUserService customUserService;
 	
-	public AuthController(UserRepository userRepository, PasswordEncoder passwordEncoder, CustomUserService customUserService) {
+	public AuthController(UserRepository userRepository, PasswordEncoder passwordEncoder, TokenProvider tokenProvider, CustomUserService customUserService) {
 		this.userRepository = userRepository;
 		this.passwordEncoder = passwordEncoder;
+		this.tokenProvider = tokenProvider;
 		this.customUserService = customUserService;
 	}
 	
@@ -63,9 +65,9 @@ public class AuthController {
 		AuthResponse res = new AuthResponse(jwt, true);
 		
 		return new ResponseEntity<AuthResponse>(res, HttpStatus.ACCEPTED);
-		
 	}
 	
+	@PostMapping("/signin")
 	public ResponseEntity<AuthResponse> loginHandler(@RequestBody LoginRequest req) {
 		
 		String email = req.getEmail();
