@@ -5,13 +5,17 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
 public class UpdateUserRequest {
 	
 	private String fullName;
 	private String profilePicture;
 	
+	@Override
+	public String toString() {
+		return "UpdateUserRequest [fullName=" + fullName + ", profilePicture=" + profilePicture + "]";
+	}
 }

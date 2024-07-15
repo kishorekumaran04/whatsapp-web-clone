@@ -1,5 +1,6 @@
 package com.kishore.whatsapp.controller;
 
+import java.util.HashSet;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kishore.whatsapp.exception.UserException;
@@ -33,11 +35,18 @@ public class UserController {
 		return new ResponseEntity<User>(user, HttpStatus.ACCEPTED);
 	}
 	
-	@GetMapping("/{query}")
-	public ResponseEntity<List<User>> searchUserHandler(@PathVariable("query") String q) {
-		List<User> users = userService.searchUser(q);
+//	@GetMapping("/{query}")
+//	public ResponseEntity<List<User>> searchUserHandler(@PathVariable("query") String q) {
+//		List<User> users = userService.searchUser(q);
+//		
+//		return new ResponseEntity<List<User>>(users, HttpStatus.OK);
+//	}
+	@GetMapping("/search")
+	public ResponseEntity<HashSet<User>> searchUserHandler(@RequestParam("name") String name) {
+		List<User> users = userService.searchUser(name);
+		HashSet<User> set = new HashSet<>(users);
 		
-		return new ResponseEntity<List<User>>(users, HttpStatus.OK);
+		return new ResponseEntity<HashSet<User>>(set, HttpStatus.OK);
 	}
 	
 	@PutMapping("/update")
